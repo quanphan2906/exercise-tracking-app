@@ -33,7 +33,7 @@ function EditExercise(props) {
         const fetchExercise = async () => {
             try {
                 const res = await axios.get(
-                    "http://localhost:5000/exercises/" + props.match.params.id
+                    "http://localhost:5000/exerci" + props.match.params.id
                 );
                 setExercise(exercise => {
                     return {
@@ -44,8 +44,8 @@ function EditExercise(props) {
                         date: new Date(res.data.data)
                     };
                 });
-            } catch (err) {
-                console.log(err);
+            } catch (error) {
+                console.log(error.response.data);
             }
         };
 
@@ -89,9 +89,6 @@ function EditExercise(props) {
         props.history.push("/");
     };
 
-    useEffect(() => {
-        console.log(exercise);
-    }, [exercise]);
     return (
         <div>
             <h3>Edit Exercise Log</h3>

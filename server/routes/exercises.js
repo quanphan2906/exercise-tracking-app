@@ -4,7 +4,7 @@ const Exercise = require("../models/exercise.model");
 router.get("/", (req, res, next) => {
     Exercise.find()
         .then(exercises => res.json(exercises))
-        .catch(next);
+        .catch(err => res.status(403).send("This is an error"));
 });
 
 router.post("/add", (req, res, next) => {
@@ -18,25 +18,25 @@ router.post("/add", (req, res, next) => {
     newExercise
         .save()
         .then(exercise => res.json(exercise))
-        .catch(next);
+        .catch(err => res.status(403).send("This is an error"));
 });
 
 router.get("/:id", (req, res, next) => {
     Exercise.findById(req.params.id)
         .then(exercise => res.send(exercise))
-        .catch(next);
+        .catch(err => res.status(403).send("This is an error"));
 });
 
 router.delete("/:id", (req, res, next) => {
     Exercise.findByIdAndDelete(req.params.id)
         .then(() => res.send("Exercise deleted"))
-        .catch(next);
+        .catch(err => res.status(403).send("This is an error"));
 });
 
 router.put("/update/:id", (req, res, next) => {
     Exercise.findByIdAndUpdate(req.params.id, req.body, { new: true })
         .then(updatedExercise => res.send(updatedExercise))
-        .catch(next);
+        .catch(err => res.status(403).send("This is an error"));
 });
 
 module.exports = router;

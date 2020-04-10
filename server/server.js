@@ -28,7 +28,7 @@ app.use("/exercises", exercisesRouter);
 app.use("/users", usersRouter);
 
 app.use((err, req, res, next) => {
-    res.status(400).send("This is an error" + err);
+    res.status(404).send("This is an error");
 });
 
 app.listen(port, () => {

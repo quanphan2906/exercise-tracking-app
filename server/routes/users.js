@@ -4,7 +4,7 @@ const User = require("../models/user.model");
 router.get("/", (req, res, next) => {
     User.find()
         .then(users => res.json(users))
-        .catch(next);
+        .catch(err => res.status(403).send("This is an error"));
 });
 
 router.post("/add", (req, res, next) => {
@@ -16,7 +16,7 @@ router.post("/add", (req, res, next) => {
     newUser
         .save()
         .then(exercise => res.json(exercise))
-        .catch(next);
+        .catch(err => res.status(403).send("This is an error"));
 
     //instead can write
     //User.create({ req.body.username }).then(exercise => res.send(exercise)).catch(next)
